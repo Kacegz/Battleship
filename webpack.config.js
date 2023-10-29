@@ -1,22 +1,37 @@
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+
 module.exports = {
+  entry: "./src/index.js",
+  mode: "development",
+  output: {
+    filename: "main.js",
+    path: path.resolve(__dirname, "dist"),
+  },
+  plugins: [new HtmlWebpackPlugin()],
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
-        exclude: ["node_modules"],
-        use: ["babel-loader"],
+        test: /\.html$/i,
+        loader: "html-loader",
       },
       {
-        test: /\.css$/,
+        test: /\.css$/i,
         use: ["style-loader", "css-loader"],
       },
       {
-        test: /\.gif$/,
-        type: "asset/inline",
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: "asset/resource",
       },
       {
-        test: /\.(ttf|eot|svg)$/,
-        type: "asset/resource",
+        test: /\.(?:js|mjs|cjs)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: [["@babel/preset-env", { targets: "defaults" }]],
+          },
+        },
       },
     ],
   },
