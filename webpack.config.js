@@ -1,5 +1,4 @@
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: "./src/index.js",
@@ -8,13 +7,8 @@ module.exports = {
     filename: "main.js",
     path: path.resolve(__dirname, "dist"),
   },
-  plugins: [new HtmlWebpackPlugin()],
   module: {
     rules: [
-      {
-        test: /\.html$/i,
-        loader: "html-loader",
-      },
       {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
@@ -40,7 +34,7 @@ module.exports = {
       config$: "./configs/app-config.js",
       react: "./vendor/react-master",
     },
-    extensions: [".js", ".jsx"],
+    extensions: [".js", ".jsx", ".css"],
     modules: [
       "node_modules",
       "bower_components",
