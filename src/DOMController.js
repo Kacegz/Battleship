@@ -2,6 +2,8 @@ import { GameController } from "./gameController";
 import { Ship } from "./ship";
 class Dom {
   static renderPlayerGameboard(player) {
+    const playerText = document.querySelector("#playertext");
+    playerText.textContent = "Player";
     const playerBoard = document.querySelector("#playerBoard");
     playerBoard.textContent = "";
     for (let i = 0; i < 10; i++) {
@@ -23,6 +25,8 @@ class Dom {
     }
   }
   static renderEnemyGameboard(player) {
+    const enemyText = document.querySelector("#enemytext");
+    enemyText.textContent = "Enemy";
     const enemyBoard = document.querySelector("#enemyBoard");
     enemyBoard.textContent = "";
     for (let i = 0; i < 10; i++) {
@@ -36,6 +40,9 @@ class Dom {
         if (player.enemyBoard.board[i][j] == "miss") {
           cell.classList.add("miss");
         }
+        if (player.enemyBoard.board[i][j] instanceof Ship) {
+          cell.classList.add("aliveship");
+        }
         cell.addEventListener("click", (e) => {
           this.attack(e, player);
         });
@@ -44,25 +51,39 @@ class Dom {
     }
   }
   static renderPlacing(player) {
+    const dialog = document.querySelector("#placeships");
+    const placableBoard = document.querySelector("#placableBoard");
+    const drag = document.querySelectorAll(".ship");
+    const toggleButton = document.querySelector("#rotate");
+    const leftBoard = document.querySelector("#player");
+    const rightBoard = document.querySelector("#enemy");
+    leftBoard.style.display = "none";
+    rightBoard.style.display = "none";
     let count = 4;
     let dragged = null;
     let rotation = "horizontal";
-    const dialog = document.querySelector("#placeships");
     dialog.showModal();
-    const placableBoard = document.querySelector("#placableBoard");
     placableBoard.textContent = "";
-    const drag = document.querySelectorAll(".ship");
-    const toggleButton = document.querySelector("#rotate");
     drag.forEach((e) => {
       e.addEventListener("drag", (event) => {
         dragged = event.target;
       });
     });
     toggleButton.addEventListener("click", () => {
+      const shipWrapper = document.querySelector("#ships");
+      const ships = document.querySelectorAll(".ship");
       if (rotation === "horizontal") {
         rotation = "vertical";
+        shipWrapper.style.flexDirection = "row";
+        ships.forEach((ship) => {
+          ship.style.flexDirection = "column";
+        });
       } else {
         rotation = "horizontal";
+        ships.forEach((ship) => {
+          shipWrapper.style.flexDirection = "column";
+          ship.style.flexDirection = "row";
+        });
       }
     });
     for (let i = 0; i < 10; i++) {
@@ -76,8 +97,16 @@ class Dom {
         cell.addEventListener("drop", (event) => {
           event.preventDefault();
           let coords = event.target.id;
-          if (rotation === "horizontal") {
-            if (+coords[2] + +dragged.id <= 10) {
+          //validator in gameboard module
+          if (
+            player.playerBoard.placeShip(
+              coords[0],
+              coords[2],
+              dragged.id,
+              rotation,
+            )
+          ) {
+            if (rotation === "horizontal") {
               for (let i = 0; i < dragged.id; i++) {
                 const cell = document.getElementById(
                   coords[0] + "," + (+coords[2] + +i),
@@ -87,9 +116,7 @@ class Dom {
               const selectedShip = document.getElementById(dragged.id);
               selectedShip.style.display = "none";
               count--;
-            }
-          } else {
-            if (+coords[0] + +dragged.id <= 10) {
+            } else {
               for (let i = 0; i < dragged.id; i++) {
                 const cell = document.getElementById(
                   +coords[0] + +i + "," + coords[2],
@@ -101,14 +128,10 @@ class Dom {
               count--;
             }
           }
-          player.playerBoard.placeShip(
-            coords[0],
-            coords[2],
-            dragged.id,
-            rotation,
-          );
           if (count <= 0) {
             dialog.close();
+            leftBoard.style.display = "block";
+            rightBoard.style.display = "block";
             Dom.renderGameBoards(player);
           }
         });
@@ -122,7 +145,7 @@ class Dom {
   }
   static displayWinner(player) {
     const overlay = document.querySelector("#overlay");
-    const text = document.querySelector("#overlaytext");
+    const text = document.querySelector("#overlaywinner");
     const hiddenShips = document.querySelectorAll(".ship");
     hiddenShips.forEach((ship) => {
       ship.style = "";
@@ -133,16 +156,23 @@ class Dom {
       text.textContent = status + " wins!";
       overlay.addEventListener("click", () => {
         overlay.style.display = "none";
-        GameController.start();
+        GameController.play();
       });
     } else if (status === "Bot") {
       overlay.style.display = "block";
       text.textContent = status + " wins!";
       overlay.addEventListener("click", () => {
         overlay.style.display = "none";
-        GameController.start();
+        GameController.play();
       });
     }
+  }
+  static launch() {
+    const overlay = document.querySelector("#start");
+    overlay.addEventListener("click", () => {
+      overlay.style.display = "none";
+      GameController.play();
+    });
   }
   static attack(e, player) {
     const cell = e.target.classList[0];

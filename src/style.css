@@ -2,7 +2,8 @@ html,body{
     margin: 0;
 }
 #container{
-    background-color: palegoldenrod;
+    background-image: url(./background.jpg);
+    background-size:cover;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,65 +13,117 @@ html,body{
     width: 100vw;
     text-align: center;
     font-size: 2rem;
+    color:white;
 }
 #placeships{
-    background-color: beige;
+    border: 5px solid white;
+    border-radius: 40px;
+    background-color: rgba(0,0,0,0.4);
 }
 #wrapper{
-    width: 70vw;
+    width: 105vh;
     display: flex;
     flex: auto;
+    padding: 30px;
+    justify-content: space-between;
 }
 #placable{
+    width: 55vh;
     padding: 40px;
     display: flex;
     flex-direction: column;
     gap: 40px;
 }
+#ships{
+    display: flex;
+    flex-direction: column;
+    gap:25px;
+}
+#rotate{
+    background-color: white;
+    height: 50px;
+    width: 200px;
+    border: 1p solid white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    align-self: center;
+}
+#rotate:hover{
+    transform:scale(1.1);
+}
+#rotate:active{
+    transform:scale(1.0);
+}
 .ship{
     display: flex;
+    width: fit-content;
 }
 .shipcell{
     width: 50px;
     height: 50px;
     border: 1px solid black;
-    background-color: bisque;
+    background-color: #c0c0c0;
 }
 .board{
-    background-color: bisque;
+    background-color: transparent;
     display: grid;
-    grid-template-columns: repeat(10,1fr)
+    grid-template-columns: repeat(10,1fr);
+    border:2px solid white
 }
 .cell{
-    border: 1px solid black;
+    border: 1px solid white;
     width: 50px;
     height: 50px;
 }
 .miss{
-    border: 1px solid blue;
-    background-color: blue;
+    background-color: #2f4753;
 }
 .hit{
-    border: 1px solid red;
     background-color: red;
 }
 .aliveship{
-    border: 1px solid green;
-    background-color: green;
+    background-color: #c0c0c0;
 }
 #overlay{
     position: fixed;
     width: 100vw;
     height: 100vh;
     display: none;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.7);
     cursor: pointer;
+}
+#start{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-image: url(./background.jpg);
+    background-size:cover;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    flex-direction: column;
+}
+#overlaywinner{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    font-size: 50px;
+    font-weight: bold;
+    color: white;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
 }
 #overlaytext{
     position: absolute;
     top: 50%;
     left: 50%;
-    font-size: 50px;
+    font-size: 40px;
     color: white;
     transform: translate(-50%,-50%);
     -ms-transform: translate(-50%,-50%);

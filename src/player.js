@@ -27,6 +27,24 @@ class Player {
     }
     targetBoard.receiveAttack(cellX, cellY);
   }
+  static botPlaceShips(targetBoard) {
+    let cellX;
+    let cellY;
+    let pos;
+    for (let i = 2; i <= 5; i++) {
+      cellX = Math.floor(Math.random() * 10);
+      cellY = Math.floor(Math.random() * 10);
+      if (Math.floor(Math.random() * 2) === 1) {
+        pos = "horizontal";
+      } else {
+        pos = "vertical";
+      }
+      while (!targetBoard.placeShip(cellX, cellY, i, pos)) {
+        cellX = Math.floor(Math.random() * 10);
+        cellY = Math.floor(Math.random() * 10);
+      }
+    }
+  }
   checkForWinner() {
     if (this.playerBoard.checkShips()) {
       return "Bot";

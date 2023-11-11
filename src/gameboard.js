@@ -14,26 +14,36 @@ class Gameboard {
     }
   }
   placeShip(x, y, length, pos) {
+    //validation if ship isnt placed on another
     const ship = new Ship(length);
     if (pos === "horizontal") {
       if (+y + +length <= 10) {
-        this.shipList.push(ship);
         for (let i = 0; i < length; i++) {
-          this.board[x][+y + +i] = ship;
+          if (!(this.board[x][+y + +i] instanceof Ship)) {
+            this.board[x][+y + +i] = ship;
+          } else {
+            return false;
+          }
         }
       } else {
-        //throw new Error("Overflowing value");
+        return false;
       }
     } else if (pos === "vertical") {
       if (+x + +length <= 10) {
-        this.shipList.push(ship);
-        for (let i = 0; i <= length; i++) {
-          this.board[+x + +i][y] = ship;
+        for (let i = 0; i < length; i++) {
+          if (!(this.board[+x + +i][y] instanceof Ship)) {
+            this.board[+x + +i][y] = ship;
+          } else {
+            return false;
+          }
         }
       } else {
-        //throw new Error("Overflowing value");
+        return false;
       }
     }
+    this.shipList.push(ship);
+    console.log(this.shipList);
+    return true;
   }
   receiveAttack(x, y) {
     if (this.board[x][y] instanceof Ship) {
