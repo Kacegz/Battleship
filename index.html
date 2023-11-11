@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battleship</title>
+    <script src="main.js" defer></script>
+</head>
+<body>
+    <div id="container">
+        <div id="start">
+            <h1>Starships🚀</h1>
+            <p>Click to play</p>
+        </div>
+        <div id="overlay">
+            <div id="overlaywinner"></div>
+            <p id="overlaytext">Click to play again</p>
+        </div>
+        <dialog id="placeships">
+            <div id="wrapper">
+                <div id="placable">
+                    <div id="rotate">Rotate</div>
+                    <div id="ships">
+                        <div class="ship" draggable="true" id="5">
+                            <div class="shipcell"></div>
+                            <div class="shipcell"></div>
+                            <div class="shipcell"></div>
+                            <div class="shipcell"></div>
+                            <div class="shipcell"></div>
+                        </div>
+                        <div class="ship" draggable="true"id="4">
+                            <div class="shipcell"></div>
+                            <div class="shipcell"></div>
+                            <div class="shipcell"></div>
+                            <div class="shipcell"></div>
+                        </div>
+                        <div class="ship" draggable="true" id="3">
+                            <div class="shipcell"></div>
+                            <div class="shipcell"></div>
+                            <div class="shipcell"></div>
+                        </div>
+                        <div class="ship" draggable="true" id="2">
+                            <div class="shipcell"></div>
+                            <div class="shipcell"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="board" id="placableBoard">
+    
+                </div>
+            </div>
+        </dialog>
+        <div id="player">
+            <h3 id="playertext"></h3>
+            <div class="board" id="playerBoard">
+
+            </div>
+        </div>
+        <div id="enemy">
+            <h3 id="enemytext"></h3>
+            <div class="board" id="enemyBoard">
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
