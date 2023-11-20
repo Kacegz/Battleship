@@ -57,6 +57,9 @@ class Dom {
     const toggleButton = document.querySelector("#rotate");
     const leftBoard = document.querySelector("#player");
     const rightBoard = document.querySelector("#enemy");
+    const shipWrapper = document.querySelector("#ships");
+    const ships = document.querySelectorAll(".ship");
+    shipWrapper.style.flexDirection = "column";
     leftBoard.style.display = "none";
     rightBoard.style.display = "none";
     let count = 4;
@@ -70,8 +73,6 @@ class Dom {
       });
     });
     toggleButton.addEventListener("click", () => {
-      const shipWrapper = document.querySelector("#ships");
-      const ships = document.querySelectorAll(".ship");
       if (rotation === "horizontal") {
         rotation = "vertical";
         shipWrapper.style.flexDirection = "row";
