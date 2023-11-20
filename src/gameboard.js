@@ -14,7 +14,6 @@ class Gameboard {
     }
   }
   placeShip(x, y, length, pos) {
-    //validation if ship isnt placed on another
     const ship = new Ship(length);
     if (pos === "horizontal") {
       if (this.validateFields(x, y, length, pos)) {
@@ -40,7 +39,6 @@ class Gameboard {
   validateFields(x, y, length, pos) {
     if (pos === "horizontal") {
       for (let i = 0; i < length; i++) {
-        console.log("hi");
         if (this.board[x][+y + +i] instanceof Ship || +y + +length > 10) {
           return false;
         }
