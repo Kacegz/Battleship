@@ -33,7 +33,6 @@ class Gameboard {
       }
     }
     this.shipList.push(ship);
-    console.log(this.shipList);
     return true;
   }
   validateFields(x, y, length, pos) {

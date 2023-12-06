@@ -92,13 +92,14 @@ html,body{
     height: 100vh;
     display: none;
     background-color: rgba(0,0,0,0.7);
+    background-size:cover;
     cursor: pointer;
 }
 #start{
     position: fixed;
     width: 100vw;
     height: 100vh;
-    background-image: url(./background.jpg);
+    background-image: url(https://i.giphy.com/ac09QAncbrhbsA318o.gif);
     background-size:cover;
     cursor: pointer;
     display: flex;

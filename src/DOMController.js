@@ -40,9 +40,9 @@ class Dom {
         if (player.enemyBoard.board[i][j] == "miss") {
           cell.classList.add("miss");
         }
-        if (player.enemyBoard.board[i][j] instanceof Ship) {
+        /*if (player.enemyBoard.board[i][j] instanceof Ship) {
           cell.classList.add("aliveship");
-        }
+        }*/
         cell.addEventListener("click", (e) => {
           this.attack(e, player);
         });
@@ -154,6 +154,8 @@ class Dom {
     let status = player.checkForWinner();
     if (status === "Player") {
       overlay.style.display = "block";
+      overlay.style.backgroundImage =
+        "url('https://i.giphy.com/media/b4ab9TBk9Ornvrt9W8/giphy.webp')";
       text.textContent = status + " wins!";
       overlay.addEventListener("click", () => {
         overlay.style.display = "none";
@@ -162,6 +164,8 @@ class Dom {
     } else if (status === "Bot") {
       overlay.style.display = "block";
       text.textContent = status + " wins!";
+      overlay.style.backgroundImage =
+        "url('https://media3.giphy.com/media/In0jFGYBR2oIJfb13r/giphy.gif')";
       overlay.addEventListener("click", () => {
         overlay.style.display = "none";
         GameController.play();
