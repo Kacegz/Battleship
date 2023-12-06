@@ -40,7 +40,6 @@ class Dom {
         if (player.enemyBoard.board[i][j] == "miss") {
           cell.classList.add("miss");
         }
-        //remove comment to see enemy visible ships
         /*if (player.enemyBoard.board[i][j] instanceof Ship) {
           cell.classList.add("aliveship");
         }*/
