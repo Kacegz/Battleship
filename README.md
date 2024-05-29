@@ -1,6 +1,30 @@
 # Battleship game
-A battleship game in halo like theme in javascript
+A [battleship game](https://en.wikipedia.org/wiki/Battleship) in halo-like theme built in javascript
+### Screenshot:
+![Screenshot](./battleships.png?raw=true)
+## Usage:
+1. Clone a repo
+```
+git clone https://github.com/Kacegz/Battleship
+```
+2. Navigate to the cloned repo
+```sh
+cd BlogAPI
+```
+3. Install [NPM](https://www.npmjs.com/)
 
+4. Install dependencies:
+```sh
+npm install
+```
+5. Run app
+```
+npx webpack --watch
+```
+### Features to implement
+- [ ] Better AI logic
+- [ ] Enhance ui
+- [ ] Multiplayer
 ### Links to gifs:
 - https://giphy.com/clips/xbox-halo-xbox-series-x-infinite-ac09QAncbrhbsA318o
 - https://giphy.com/gifs/xbox-halo-guardian-master-chief-b4ab9TBk9Ornvrt9W8
