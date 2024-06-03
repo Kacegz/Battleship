@@ -1,15 +1,17 @@
-# Battleship game
+# Starships
 A [battleship game](https://en.wikipedia.org/wiki/Battleship) in halo-like theme built in javascript
+## Live:
+kacegz.github.io/Starship/
 ### Screenshot:
-![Screenshot](./battleships.png?raw=true)
+![Screenshot](./starship.png?raw=true)
 ## Usage:
 1. Clone a repo
 ```
-git clone https://github.com/Kacegz/Battleship
+git clone https://github.com/Kacegz/Starship
 ```
 2. Navigate to the cloned repo
 ```sh
-cd BlogAPI
+cd Starship
 ```
 3. Install [NPM](https://www.npmjs.com/)
 
