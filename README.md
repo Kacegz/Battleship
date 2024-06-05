@@ -1,7 +1,7 @@
 # Starships
 A [battleship game](https://en.wikipedia.org/wiki/Battleship) in halo-like theme built in javascript
 ## Live:
-kacegz.github.io/Starship/
+[Link](https://github.com/Kacegz/Starship)
 ### Screenshot:
 ![Screenshot](./starship.png?raw=true)
 ## Usage:
